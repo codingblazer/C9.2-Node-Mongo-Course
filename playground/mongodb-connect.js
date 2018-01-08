@@ -18,6 +18,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,database)=>{
   db.collection('User').insertOne({
     name: 'Andrew',
     age: 25,
+    _id: 123,  //this is how we can give our own id
     location: 'Philadelphia'
   },(err,result)=>{
     if(err){
