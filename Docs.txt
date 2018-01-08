@@ -49,3 +49,8 @@ next 3 bytes :  counter like normal increment databases
 //you can use count using promises
 //in robo, expand recursively open all records
 //
+
+//lets work with delete now => deleteMany delete all resutls that match the query while deleteOne delete only one - the first matchign one
+on deleting you will get lot of logs in result on comamndline => ok:1 means done and n:3 tells that 3 records were deleted
+
+findOneAndDelete function deletes one and return back the deleted document to us => we may need this document (For ex - to show message that "you have deleted todo witht this text and this value")
