@@ -54,3 +54,6 @@ next 3 bytes :  counter like normal increment databases
 on deleting you will get lot of logs in result on comamndline => ok:1 means done and n:3 tells that 3 records were deleted
 
 findOneAndDelete function deletes one and return back the deleted document to us => we may need this document (For ex - to show message that "you have deleted todo witht this text and this value")
+
+see mongo db native for update command => use docs.mongodb.com and see update commands like : $set
+//update : findOneAndUpdate takes 4 args => 1. filtering 2.the field to update 3. callback optional
