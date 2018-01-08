@@ -18,4 +18,20 @@ but now lets see how to do this from the inside of node app => to do it from ins
 
 //if there are some problems, that is because videos are old => refrer to latest code of mongodb native from github
 
-//after adding enteries, run the node app and then you can see them in robo => click right and then refresh to update the changes in database 
+//after adding enteries, run the node app and then you can see them in robo => click right and then refresh to update the changes in database
+
+//lets learn about id property that gets added for every document (record)
+//it is not automincrement integer but a random id like hash
+//mongo is designed to scale easily => means that we can add more database server at any moment to handle extra load
+//But how => if we had normal increment based db like in sql => if we create new server to store new records => we need to know the last increemtned id from other servers and all that stuff
+//but here, since id is random, we dont have any relation to other servers. We can just store data in new server instantly, like we store data in files => this is scaling
+
+ //object id : 12 bytes id : first 4 bytes are timestamp
+ next 3 bytes : machine identifier => ensures unique id
+ next 2 bytes : process id
+next 3 bytes :  counter like normal increment databases
+
+//we can also create our own id => give a property in record {name:'sachin', _id:123}  like this and id will be this but we prefer random id
+//BUT id must be unique
+
+//we can also override the id creation function of mongodb library => how to do it => in next commit we will learn it by object destrcuturing
