@@ -1,14 +1,10 @@
-const MongoClient = require('mongodb').MongoClient;
+//now lets use object destructuing in this project => here we will pull out a function named ObjectID from mongodb library to override it
 
-var user = {name: 'andrew', age:25};
-var {name} = user; //this line has done object destructuring
-//what this has done is : taken out name property from user object as a variable named 'name'
-console.log(name);
-name = 'sachin';
-console.log(user); // this tells that user is not changed => destructuring is just pulling property out and storing in some var...nothing different
-
-
-
+// const MongoClient = require('mongodb').MongoClient;
+// const {MongoClient} = require('mongodb'); //above statement and this are exactly statement
+const {MongoClient,ObjectID} = require('mongodb');
+var obj = new ObjectID(); //this will give random id that mongo was automatically adding everytime we created record => if you make call to this, it will give different id everytime => you can get this random id, append anything to it and then add it to record
+console.log(obj);
 
 MongoClient.connect('mongodb://localhost:27017/TodoApp',(err,database)=>{
   const db = database.db('TodoApp');
