@@ -1,0 +1,21 @@
+last time we saw how to create database and we ran insert and find command
+but now lets see how to do this from the inside of node app => to do it from inside of node app we will need node native
+//to install it on node, do :
+//npm install mongodb@2.2.5
+
+//we use mongoclient to access the running database server
+//make sure that database server is running => can be running on server or locally ( we saw in last class that to run database server locally do mongod --dbpath ~/location)
+//see mongodb-connect.js
+// MongoClient.connect takes 2 args - url of the database server => can be web running server or local running server that you want to access/connect => 2nd arg takes a callback which is called on completing the connection
+//db.close() close the connection to the server
+
+//In mongo, we dont need to first create database and then use it => we can create it as we connect => in connect url, we gave localhost../TodoApp => if TodoApp is not a database already, we dont need to worry, we can still connect to hypothetical TodoApp db
+//after connecting, as we enter any data by insert into this hypo db, this db with name TodoApp will be created and data will be inserted
+
+//TodoApp is the name of the project and it can include many databases/collections
+//db.collection to create new db/collection => takes 2 args : collection object and the callback which is called to tell if collection is added successfully or not
+//JSON.stringify takes first the db record : .ops means record/document and strigify takes undefined and 2 space separation as args
+
+//if there are some problems, that is because videos are old => refrer to latest code of mongodb native from github
+
+//after adding enteries, run the node app and then you can see them in robo => click right and then refresh to update the changes in database 
