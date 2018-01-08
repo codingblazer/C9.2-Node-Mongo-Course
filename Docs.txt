@@ -40,3 +40,12 @@ next 3 bytes :  counter like normal increment databases
 //now lets fetch
 //.find() returns all the records with cursor pointing to these => to array converts them into array => after .find() we can use many cursor methods like toarray
 //.then() => inside this you will get whatever you have filtered before this => you will get the filtered result as argument as shown
+
+//inside find we can give queries to filter the records we are getting in terms of key value pair
+//also if we want to find by id, we cant give normally like _id:'eveerrv45' because id is not a string , it is object => you have to give new ObjectID('vevrv34cew')
+
+//you can visit docs of mongo native API to see all cursor methods
+
+//you can use count using promises
+//in robo, expand recursively open all records
+//
