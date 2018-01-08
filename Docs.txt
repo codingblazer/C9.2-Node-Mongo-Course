@@ -36,4 +36,7 @@ next 3 bytes :  counter like normal increment databases
 
 //we can also override the id creation function of mongodb library => how to do it => in next commit we will learn it by object destrcuturing
 
-//
+//now we will see fetching -> we can insert records from robo directly => right click -> insert document => fill and save
+//now lets fetch
+//.find() returns all the records with cursor pointing to these => to array converts them into array => after .find() we can use many cursor methods like toarray
+//.then() => inside this you will get whatever you have filtered before this => you will get the filtered result as argument as shown
