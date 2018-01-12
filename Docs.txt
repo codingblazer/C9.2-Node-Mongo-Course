@@ -57,3 +57,13 @@ findOneAndDelete function deletes one and return back the deleted document to us
 
 see mongo db native for update command => use docs.mongodb.com and see update commands like : $set
 //update : findOneAndUpdate takes 4 args => 1. filtering 2.the field to update 3. callback optional
+
+mongoose is ORM => object relation mapping => npm library that removes boilerplate code of mongo native
+npm i mongoose --save
+mongoosejs.com see plugins, docs, tutorials
+
+Now we can use the inbuilt promises with mongoose => do mongoose.promised = golbal.promises
+
+Nect we will see that how we can create a model in mongoose. Mongoose is more organized in a way that we can define the type of all the properties of our collection => model takes 2 args => modelname and object with fields and their properties like type
+
+we can create a document by using save command with promises => the name of the collection for the document : here mogoose created the name of collection itself by Todo which is modelname => small lettered and pluralised => todos
