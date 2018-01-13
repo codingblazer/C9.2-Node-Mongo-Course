@@ -42,3 +42,10 @@ Before proceeding further let's go back to revise express where we learned how t
 Also read this : https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Introduction
 
 That's all with the basics and revison
+
+app.post like get, takes 2 args => the url and the callback => /todos url for creating new todo
+Now, bodyParser is middleware which is used to take your json and convert it into a object and then putting into response of callback..we will see how
+
+bodyparser.json() returns a function for json to object and we have passd it to the app.use i.e. passed the middleware functions
+now lets run the app server and now, let's test it using postman
+=> on postman, select Post and url to be localhost:3000/todos and then in body tab, select JSON and give the json which is sent by client containing todo => {	"text" : "this is first todo"} => you will receiv this todo on console because we logged req.body
