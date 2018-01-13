@@ -1,0 +1,44 @@
+Earlier, we did created a server for static website using express but now we will create server with a mongodb database
+Now here, inside mongoose.js we have mongoose object variable => we will export it => when you are exporting it => the mongoose object, along with its state and configuration like .connect, promise are also passed => we don't have to set them again
+=> inside mongoose.js we have exported this variables mongoose => mongoose variable which is present in file mongoose.js is exported along with its config
+=> Now inside server.js, we need that mongoose object variable with its config set => first take the complete mongoose.js file as object and then find the mongoose variable inside it...we will able to find that variable because that is exported/accesible
+=> first require the mongoose.js file and then we have used destructuring on it to get the mongoose object variable from the inside of this file
+
+Similarly we have exported the User and Todo model variable and then accesed them from their file by destructuring
+What is destructuring doing => read stackoverflwo favorited question => here what it has doneis ::
+var {Todo} = require('./models/todo.js');
+
+would otherwise had been : var todos = require('./models/todo.js'); => var Todo = todos.Todo; => we reduced one line of code => had we been pulling out more than one variable here, it would have saved lot more code
+
+Some Note : the require and export works together => when you require any file => you are actually accessing everything that is added in the module.export of that file.
+
+We will be working with routees: host route =>
+
+routes : Url handlers => routes the URL the client is hitting to respective resources => app.get(/) that we did in express was get route => and url was /about, /, etc.
+resources : various type of resources/infos that we can provide to the User like home page data
+view : templates to display those resources .hbs templates we created
+controller => separated the code that does routing and the code that processes the actual request
+
+ Flow : client make http request => goes to routes => routes send request to appropraite controller =>  controller contact the models which are present along with mongodb that we just learned => the data is read or write from mongodb using models and
+ then the data templated are taken by the controller from views and these templated along with data are returned to the client as http response
+
+Before proceeding further let's go back to revise express where we learned how to create server and host our website to return response to clients
+=> Now, express is framework which serves lot of uses :
+1) Write handlers for requests with different HTTP verbs like GET, POST at different URL paths (routes).
+2) Integrate with "view" rendering engines in order to generate responses by inserting data into templates.
+3) Set common web application settings like the port to use for connecting, and the location of templates that are used for rendering the response.
+4) Add additional request processing "middleware" at any point within the request handling pipeline. developers have created compatible middleware packages to address almost any web development problem - authentication, security ensuring, cookies,  logins, destructuring
+
+  Read this to get the difference between routes and middlewares : http://qnimate.com/express-js-middleware-tutorial/
+  Also some extra points :
+
+  normally when people say route, it means "/anything" i.e. some url route
+  Also read the answer here : https://stackoverflow.com/questions/35676259/understanding-middleware-and-route-handler-in-express-js
+
+  Ex of route handlers : app.post(), put(), delete(), options(), trace()
+  middleware : app.use
+
+  IMP : Whereas route functions end the HTTP request-response cycle by returning some response to the client, middleware functions typically perform some operation on the request or response like authentication/verification and then call the next function in the "stack", which might be more middleware or a route handler.
+Also read this : https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/Introduction
+
+That's all with the basics and revison
