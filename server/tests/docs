@@ -15,3 +15,9 @@ Also, test that this one todo in db has text same as text we sent
 But, what if db already has some data in it => length won't be 1 => we can run presettings using before
 
 => in before we have used mongoose remove method to empty the database.
+
+First, we have updated the find() in post by passing the query which  will only give results have text = text we passed
+Now we will test our get request => since db should have somethign to get the list of todos => we will add the todos ourself => created array of todos
+Now using before, after we have emptied the db, we inserted these tosdos
+
+Now, making a request using supertest for testing the get request
