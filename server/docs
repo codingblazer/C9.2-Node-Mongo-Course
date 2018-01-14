@@ -54,6 +54,6 @@ now, req.body.text contains the text of the todo sent by client to store in data
 like we were earlier creating models of todos and users, insdie post route handler, we will create object using model of todo but this time we will be using the texxt of todo = text sent by client i.e. req.body.texxt
 next, within post habdler, we are saving the above created todo in database as doc => and if successfull returning this doc to client (because it also contains new infio like id of doc) and error otherwise
 
-=> now when you send post req using postman => text from req is taken and model is used to create todo and then todo is saved as a doc in database => you shuold see the sent todo from postman in robo db and then we return user back the added doc => on postman you will see the response as todo doc 
+=> now when you send post req using postman => text from req is taken and model is used to create todo and then todo is saved as a doc in database => you shuold see the sent todo from postman in robo db and then we return user back the added doc => on postman you will see the response as todo doc
 
 https://httpstatuses.com/ for all the http status codes

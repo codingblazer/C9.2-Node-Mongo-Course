@@ -1,0 +1,17 @@
+first run the mongo server for testing
+Now, go to mongoose documentation to read find() and remove method
+Now, lets see how to test using supertest =>
+
+making request to server and then checking the response that server has sent to client => receiving res in expect
+=> if you see server => it is sending the todo doc as response to its client => response = todo doc => check that received doc has text that we sent using expect
+
+Now inside end(), we can just call done() but since we are making request, we can have error too => we will put callback for that inside end()
+
+Though we have tested, but still this is not testing whether server itself has added the doc to mongodb or not => we should test that too => test insdie End() =>
+
+Like said, read model.find() func of mongoose. Now, using this find func inside end(), we are getting all todos inside callback as result => check that therre length is 1 because we just added a todo using post request which we are testiung
+Also, test that this one todo in db has text same as text we sent
+
+But, what if db already has some data in it => length won't be 1 => we can run presettings using before
+
+=> in before we have used mongoose remove method to empty the database.
