@@ -57,3 +57,5 @@ next, within post habdler, we are saving the above created todo in database as d
 => now when you send post req using postman => text from req is taken and model is used to create todo and then todo is saved as a doc in database => you shuold see the sent todo from postman in robo db and then we return user back the added doc => on postman you will see the response as todo doc
 
 https://httpstatuses.com/ for all the http status codes
+
+now we have set up get route for getting a list of all todos..find() method of mongoose helps in achieving that => we could have send the array of todos as it is but we wrapped it inside object for extensibility i.e. this way we can send more info along with array in future without modifying logic on client side
