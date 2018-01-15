@@ -73,3 +73,17 @@ heroku config //to see database url => change that in mongoose.js file where we 
 do git commit and push
 git push heroku master
 heroku log shows all the logs which helps in figuring out if any error occurs
+
+
+How i did it => Refer here : https://geuispuspita.wordpress.com/2014/06/30/how-to-use-mongohq-on-heroku-without-verifying-your-account/
+create account on mlab website and then create database there and add new user with some username and password
+corresponding to db, you will get url like  mongodb://<user>:<password>@alex.mongohq.com:10007/<database> => copy it and replace <user> and <pass>, <db> in this by their respective credentials
+$ heroku config:set MONGOHQ_URL="mongodb://foo:bar@alex.mongohq.com:10007/mymongodb"
+you can check if this env var has been set by using heroku configuration
+Now use this var in your mongoose.js for connection
+
+Some other changes done :
+"main": "server/server.js" done in package.JSON
+Make sure that your locl database server is disconnected - VIMP
+
+You were getting this error : in heroku logs => Db.prototype.authenticate method will no longer be available in the next major release 3.x as MongoDB 3.6 will only allow auth against users in the admin db and will no longer allow multiple cred
