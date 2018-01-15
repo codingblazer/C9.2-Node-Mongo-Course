@@ -87,3 +87,15 @@ Some other changes done :
 Make sure that your locl database server is disconnected - VIMP
 
 You were getting this error : in heroku logs => Db.prototype.authenticate method will no longer be available in the next major release 3.x as MongoDB 3.6 will only allow auth against users in the admin db and will no longer allow multiple cred
+
+Now lets create update route =>
+Note: inside post route we may make request to delete anything (can have anything inside any route) => we can do anything but as a standard, post route means we will have code inside which will post something
+
+Patch :
+_.pick(req.body,['text','completed']); => this picks the mentioned properties from the req.bpdy and stored them in a object on left side
+
+findByIdAndUpdate(id,{$set: body},{new:true}) => 1) since finding by id => give the id
+2) we used $set in mongodb also => it will set every property in body object that matches with property of todo to be updated
+3) like in mongodb we had return : false => here we have new : false which tells to retuen or not
+
+ 
