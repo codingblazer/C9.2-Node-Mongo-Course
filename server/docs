@@ -62,3 +62,14 @@ now we have set up get route for getting a list of all todos..find() method of m
 
 Now we setup route for finding a particular todo => see the get method => whenever we have to take input coming from user => it comes in from of req => req.params contains user data => see it on postman by doing res.send(req.params) and then decide how to decode that infos
 to give url including variable like id in this case, we use : before variable => todos/:id
+
+Now we are deploying to heroku => change port variables
+//inside package.json, write start script, also tell the node version on which it will run => for this, check your version and put that
+
+Now lets deploy
+heroku create
+heroku addons:create mongolab:sandbox //this is a heroku addon that helps us in connecting with mongo => we chose sandbox version of it which is free
+heroku config //to see database url => change that in mongoose.js file where we will put this inside connecting
+do git commit and push
+git push heroku master
+heroku log shows all the logs which helps in figuring out if any error occurs
