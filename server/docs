@@ -119,3 +119,19 @@ Now we will use the jsonwebtoken library which is actually used in web authentic
 There are 2 type of methods associated with User Model => User.method() which is called on model User and user.method() which is called on user object that we created by new User() => instance method
 => Example are => User.findByToken which will find the user with given token from all users and user.generateToken which will generate token for the user on which this method is called
 To create instance method, we must use schema structure of mongoose => we are going to restructure our users.js
+
+All methods must be made before creating a  model out of Schema and are created usign shcema.methods.method name syntax => unfortunately this doesn't support the arrow functions and thus we will use normal function
+inside generateAuthToken => this method will be called inside post user route => and will be called after creating route => user is created with client provided email and pass and then this method is called on that user Object
+=> this method will return auth token and update the token property inside this user (see that in schema of user we defined tokens property)
+
+So, in server.js, we created empty user model object and then saved this empty user object as doc in database using save => after this i.e. in then, we called generateAuthToken => inside generateAuthToken, we did all the work and then returned following :
+user.save().then(()=>{
+  return token;
+});
+
+=> Now come back to server.js and substitute this in place of generateAuthToken call.
+=> it calls this user.save() because we just updated the token property user (we could have used update command as well)
+and then return token in this => it becomes return return token => this returned token is then passed to next then by chaning => inside it we sent a header. Header always takes a key value pair.
+Now look in users.js that we have another func toJSON() => this function is overriding inbuilt toJSON func which is called while conversion of object to json
+=> inside this we are picking only email and id property and sending to client, istead of sending the complete user Object
+=> this is done because things like password should not be sent to user back opnely like this
