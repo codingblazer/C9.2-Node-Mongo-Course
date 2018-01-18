@@ -33,6 +33,18 @@ Todo.find().then(
 })
 });
 
+app.post('/users',(req,res)=>{
+  var body = _.pick(req.body,['email','password']);
+  var user = new User(body);
+
+  user.save().then((user)=>{
+    res.send(user);
+  }).catch((e)=>{
+    console.log('sachin this is error :'+e);
+    res.status(400).send(e);
+  })
+});
+
 app.get('/todos/:id',(req,res)=>{
   var id = req.params.id;
   if(!ObjectID.isValid(id)){
@@ -80,7 +92,7 @@ app.patch('/todos/:id',(req,res)=>{
     res.send({todo});
   }).catch((e)=>{
     res.status(400).send();
-  });  
+  });
 });
 
 app.listen(port, ()=>{
