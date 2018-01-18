@@ -110,8 +110,12 @@ But SHA algo is same for everyone => user with id 4 can apply SHA for user id to
 hashing.js shows this
 
 Now we will use the jsonwebtoken library which is actually used in web authentication...we wont use crypto library
-=> It has 2 functions => 1st is sign which is used to generate the token from: 1st arg = data payload, 2nd arg = secret key know to server people only...Actually go to jwt.io => any hash is in format jvekbvr.cejk.vebvr => 3 parts separated by dot => first part is header for info related to type of algo used, etc....2nd part for data payload..3rd part for the secret key 
+=> It has 2 functions => 1st is sign which is used to generate the token from: 1st arg = data payload, 2nd arg = secret key know to server people only...Actually go to jwt.io => any hash is in format jvekbvr.cejk.vebvr => 3 parts separated by dot => first part is header for info related to type of algo used, etc....2nd part for data payload..3rd part for the secret key
 => You can also go to this website and verify the token => give data in payload part, give secret in secrtet part and give token on left => will verifying
 => 2nd function by jwt is verify which takes 1) the token that user must have sent us which we want to verify 2) secret key used by our server
 => since (data id + secret) = token => this time giving secret and token will decode it to give us data i.e. id and iat (time at which created)
 => this we can return the data if verified, else it will not give us data i.e. we will get Invalid Signature error in decoded variable
+
+There are 2 type of methods associated with User Model => User.method() which is called on model User and user.method() which is called on user object that we created by new User() => instance method
+=> Example are => User.findByToken which will find the user with given token from all users and user.generateToken which will generate token for the user on which this method is called
+To create instance method, we must use schema structure of mongoose => we are going to restructure our users.js

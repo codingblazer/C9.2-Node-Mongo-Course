@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 const validator = require('validator'); //validator is lib for mk
 
-var User = mongoose.model('User',{
+var userSchema = new mongoose.Schema({
   email: {
     type: String,
     required : true,
@@ -29,6 +29,7 @@ var User = mongoose.model('User',{
     }
   }]
 });
+var User = mongoose.model('User',userSchema);
 
 module.exports = {User};
 
