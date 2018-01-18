@@ -107,4 +107,11 @@ Lets leave password auth away for while and don't see hashing.js right now => le
 But SHA algo is same for everyone => user with id 4 can apply SHA for user id to get token corresponding to user id 5 and get all the data of user 5 => security hole
 => We should make token hash from id + some secret key just know to us on server side => anyone can'y get the hash token of user with id 5 because he must know secret to get that token hash => also since we provided this token to user 5, he can still access it
 
-hashing.js shows this 
+hashing.js shows this
+
+Now we will use the jsonwebtoken library which is actually used in web authentication...we wont use crypto library
+=> It has 2 functions => 1st is sign which is used to generate the token from: 1st arg = data payload, 2nd arg = secret key know to server people only...Actually go to jwt.io => any hash is in format jvekbvr.cejk.vebvr => 3 parts separated by dot => first part is header for info related to type of algo used, etc....2nd part for data payload..3rd part for the secret key 
+=> You can also go to this website and verify the token => give data in payload part, give secret in secrtet part and give token on left => will verifying
+=> 2nd function by jwt is verify which takes 1) the token that user must have sent us which we want to verify 2) secret key used by our server
+=> since (data id + secret) = token => this time giving secret and token will decode it to give us data i.e. id and iat (time at which created)
+=> this we can return the data if verified, else it will not give us data i.e. we will get Invalid Signature error in decoded variable
