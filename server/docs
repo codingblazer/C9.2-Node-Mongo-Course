@@ -98,4 +98,13 @@ findByIdAndUpdate(id,{$set: body},{new:true}) => 1) since finding by id => give 
 2) we used $set in mongodb also => it will set every property in body object that matches with property of todo to be updated
 3) like in mongodb we had return : false => here we have new : false which tells to retuen or not
 
- 
+
+Now we will learn about the hashing => right now anybody in world if cmoes to know url can modify our database => must be authenticated which is done by using the tokens
+when user is created we will also send a hash based token to the user which he will send to us while making any request in his request header. We will then check if user with this token is authorised to access asked route or not and then accrodingly allow it
+we will use this for creating hash => npm i crypto-js --save We will use SHA256 hashing for this => hashing converts any string into a fixed length hash
+
+Lets leave password auth away for while and don't see hashing.js right now => let say you can access your todos with url =>/todos/userid/tokenHash => this should make sure that no only authenticated user can access it => We will take user data, store it in todo, and using user id we will create hash token => will ensure that for every userid, we have hash token  which we provided only to user with that id
+But SHA algo is same for everyone => user with id 4 can apply SHA for user id to get token corresponding to user id 5 and get all the data of user 5 => security hole
+=> We should make token hash from id + some secret key just know to us on server side => anyone can'y get the hash token of user with id 5 because he must know secret to get that token hash => also since we provided this token to user 5, he can still access it
+
+hashing.js shows this 
