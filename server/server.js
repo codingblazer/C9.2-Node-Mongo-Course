@@ -6,6 +6,7 @@ var {ObjectID} = require('mongodb');
 var {mongoose} = require('./db/mongoose.js');
 var {Todo} = require('./models/todos.js');
 var {User} = require('./models/users');
+var {authenticate} = require('./middlewares/authenticate');
 
 var app = express();
 const port = process.env.PORT || 3000;
@@ -78,22 +79,8 @@ app.delete('/todos/:id',(req,res)=>{
   res.status(400).send();
 });
 });
-var authenticate = (req,res,next)=>{
-  var token = req.header('x-auth');
 
-  User.findByToken(token).then((user)=>{
-    if(!user)
-    return Promise.reject('User not found');
-
-    req.user = user;
-    req.token = token;
-    next();
-
-  }).catch((e)=>{
-    res.status(401).send(e);
-  });
-};
-app.get('/users/me',(req,res)=>{
+app.get('/users/me',authenticate,(req,res)=>{
   res.send(req.user);
 });
 
