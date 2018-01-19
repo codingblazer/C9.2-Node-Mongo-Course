@@ -26,6 +26,16 @@ todo.save().then((doc)=>{
 });
 });
 
+
+app.delete('/users/me/logout',authenticate,(req,res)=>{
+  req.user.removeToken(req.token).then(()=>{
+    res.status(200).send('Logged out');
+  },()=>{
+    res.status(400).send('Unsuccessful');
+  });
+});
+
+
 app.get('/todos',(req,res)=>{
 Todo.find().then(
   (todos)=>{

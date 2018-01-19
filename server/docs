@@ -172,3 +172,7 @@ Now we want to hash the plaintext pass only when password field is modified => i
 Next, since user won't be allowed to create duplicate emails, he can't get the token on other devices => login page
 everything is simple to understand, just noticw that we are sending back new token whenever user is loggin using generateAuthToken method which also adds this new token to the list of tokens in database
 => database has more than one access tokens
+
+Next, we will create logout in which the user toke will be delered => we will use authenticate midddleware => after this middlewre, our route object req object will be containing the authenticated token and user for that token
+after this we will use this token to delete the token from user documetn => make remove user method in Users
+the pull method used in this is mongoose method which lets us pull (delete) the thingw we want => we have asked there to pull all in tokens array with token = given token val
