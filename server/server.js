@@ -79,6 +79,18 @@ app.delete('/todos/:id',(req,res)=>{
 });
 });
 
+app.get('/users/me',(req,res)=>{
+  var token = req.header('x-auth');
+
+  User.findByToken(token).then((user)=>{
+    if(!user)
+    return Promise.reject('User not found');
+    else res.send(user);
+  }).catch((e)=>{
+    res.status(401).send(e);
+  });
+});
+
 app.patch('/todos/:id',(req,res)=>{
   var id = req.params.id;
 

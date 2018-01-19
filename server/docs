@@ -135,3 +135,18 @@ and then return token in this => it becomes return return token => this returned
 Now look in users.js that we have another func toJSON() => this function is overriding inbuilt toJSON func which is called while conversion of object to json
 => inside this we are picking only email and id property and sending to client, istead of sending the complete user Object
 => this is done because things like password should not be sent to user back opnely like this
+
+Now we will see how to make private route i.e. wrapping route with auth token so only user with auth token can access it
+
+
+To define this model method, we use static keyword => see users.js
+It will take token as arg and we make this on model => USer = this
+
+this func will authenticate and return the user for given token
+we will use try catch and wont directly use decoded = verify because it may throw error => use try catch this way
+if success => we will use User.findone to find the user => it gives us a promise and lets return the promise directly so we can do further chaining in server.js
+inside findOne we are giving conditions : id, token val and token type
+if error => create a promise yourslef  and inside its reject pass the error OR we can use a shortcut => Promise.reject(errmessage)
+
+
+inside server.js, we are getting promise on calling this => use 'then' to get the returned user => if user not exist in any case => returned a reject promise => .catch will get executed, if user exist => .send(user) will get executed
