@@ -159,3 +159,12 @@ instead of doing res.send the user object that we found using token, we will ins
 => since req object is modified, middleware should be called before route => inside .get of route, call middleware function
 Now, we should call next so that whatever is after thsi middleware can be executed => call next after modifying req object
 we don't call next inside catch because if error, then no point handling route
+
+We can't store password in database in straight string => if database is hacked, he will know all passwords and people often use same passwords everywhere
+Also, the information sent by user should be transferred over secure channel because for ex if user signsup for first time and give password => person may hack it in betwwenn => use https
+Password also use a secret => so that even if hacker gets it, he can't use decrypt to get password as password will be pass+secret => will never know secrtet
+we use bcrypt lib for hashing the password
+see hashing.js along with docs for basic use of it
+Now we will create a mongoose (not express) middleware. => it will be executed before any update operation is done which will make sure that pass is hashed => middleware is actually a func => will be declared in schema like we added func earlier
+.pre is used to make middleware for before => 1st arg => middleware will execute before this event
+Now we want to hash the plaintext pass only when password field is modified => isModified method is used which will check if in save command we are updating the password field => if yes, it will hash the password before saving => Note that it is not checking if old pass or new pass have diff value BUT it is checking if we have asked to update password field in save
