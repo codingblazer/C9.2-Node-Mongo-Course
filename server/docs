@@ -168,3 +168,7 @@ see hashing.js along with docs for basic use of it
 Now we will create a mongoose (not express) middleware. => it will be executed before any update operation is done which will make sure that pass is hashed => middleware is actually a func => will be declared in schema like we added func earlier
 .pre is used to make middleware for before => 1st arg => middleware will execute before this event
 Now we want to hash the plaintext pass only when password field is modified => isModified method is used which will check if in save command we are updating the password field => if yes, it will hash the password before saving => Note that it is not checking if old pass or new pass have diff value BUT it is checking if we have asked to update password field in save
+
+Next, since user won't be allowed to create duplicate emails, he can't get the token on other devices => login page
+everything is simple to understand, just noticw that we are sending back new token whenever user is loggin using generateAuthToken method which also adds this new token to the list of tokens in database
+=> database has more than one access tokens

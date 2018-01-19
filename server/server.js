@@ -7,6 +7,7 @@ var {mongoose} = require('./db/mongoose.js');
 var {Todo} = require('./models/todos.js');
 var {User} = require('./models/users');
 var {authenticate} = require('./middlewares/authenticate');
+const bcrypt = require('bcryptjs');
 
 var app = express();
 const port = process.env.PORT || 3000;
@@ -78,6 +79,17 @@ app.delete('/todos/:id',(req,res)=>{
 }).catch((e)=>{
   res.status(400).send();
 });
+});
+
+app.post('/users/login',(req,res)=>{
+  var body = _.pick(req.body,['email','password']);
+  User.findByCredentials(body.email,body.password).then((user)=>{
+    return user.generateAuthToken().then((token)=>{
+      res.header('x-auth',token).send(user);
+    });
+  }).catch((e)=>{
+    res.status(400).send();
+  });
 });
 
 app.get('/users/me',authenticate,(req,res)=>{

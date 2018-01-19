@@ -57,6 +57,23 @@ userSchema.methods.toJSON = function() {
   return _.pick(userObj,['_id','email']);
 };
 
+userSchema.statics.findByCredentials = function(email,password){
+  var User = this;
+  return User.findOne({
+    'email': email
+  }).then((user)=>{
+    if(!user)
+    return Promise.reject();
+
+    return new Promise((resolve,reject)=>{
+      bcrypt.compare(password,user.password,(err,res)=>{
+        if(res) resolve(user);
+        else reject();
+      });
+    });
+  });
+};
+
 userSchema.statics.findByToken = function(token) {
   var User = this;
   var decoded;
