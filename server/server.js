@@ -78,17 +78,23 @@ app.delete('/todos/:id',(req,res)=>{
   res.status(400).send();
 });
 });
-
-app.get('/users/me',(req,res)=>{
+var authenticate = (req,res,next)=>{
   var token = req.header('x-auth');
 
   User.findByToken(token).then((user)=>{
     if(!user)
     return Promise.reject('User not found');
-    else res.send(user);
+
+    req.user = user;
+    req.token = token;
+    next();
+
   }).catch((e)=>{
     res.status(401).send(e);
   });
+};
+app.get('/users/me',(req,res)=>{
+  res.send(req.user);
 });
 
 app.patch('/todos/:id',(req,res)=>{

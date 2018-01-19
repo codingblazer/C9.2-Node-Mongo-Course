@@ -150,3 +150,12 @@ if error => create a promise yourslef  and inside its reject pass the error OR w
 
 
 inside server.js, we are getting promise on calling this => use 'then' to get the returned user => if user not exist in any case => returned a reject promise => .catch will get executed, if user exist => .send(user) will get executed
+
+SInce the authentication will be used by many ruotes => lets create a custom middleware for that
+
+middleware will take 3 args => req,res and next => copy the code from route we ust created inside this middleware and make following edits
+instead of doing res.send the user object that we found using token, we will instead pass the user to the route which will use this middlewares => how to pass => since every route will be getting req object => lets add new prop to req object and thus route will have the user that we founf
+=> req.user = user and req.token = token
+=> since req object is modified, middleware should be called before route => inside .get of route, call middleware function
+Now, we should call next so that whatever is after thsi middleware can be executed => call next after modifying req object
+we don't call next inside catch because if error, then no point handling route
